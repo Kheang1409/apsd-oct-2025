@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CAMS", "CAMS\CAMS.csproj", "{A558C401-852E-1E4E-2DA0-18029D287EE8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A558C401-852E-1E4E-2DA0-18029D287EE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A558C401-852E-1E4E-2DA0-18029D287EE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A558C401-852E-1E4E-2DA0-18029D287EE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A558C401-852E-1E4E-2DA0-18029D287EE8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FD10FC91-7F13-4877-973C-C63B47223957}
+	EndGlobalSection
+EndGlobal
