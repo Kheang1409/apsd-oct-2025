@@ -1,0 +1,64 @@
+# =========================
+# Java / JVM
+# =========================
+# Compiled class files
+*.class
+
+# Maven / Gradle target directories
+target/
+build/
+
+# Eclipse / IntelliJ / VS Code project files
+*.classpath
+*.project
+*.settings/
+.idea/
+*.iml
+.vscode/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+
+# Package Files
+*.jar
+*.war
+*.ear
+
+# =========================
+# C# / .NET
+# =========================
+# Build results
+bin/
+obj/
+out/
+
+# Rider / Visual Studio / VS Code files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vscode/
+*.vs/
+
+# =========================
+# OS Generated
+# =========================
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# =========================
+# Other
+# =========================
+# Node / npm (if any JS/TS is used)
+node_modules/
+
+# Temporary files
+*.swp
+*~
