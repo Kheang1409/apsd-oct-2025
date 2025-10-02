@@ -12,14 +12,14 @@ public class Patient {
     private String lastName;
     private String phoneNo;
     private String email;
-    private String mailingAddress;
+    private MailingAddress mailingAddress;
     private LocalDate dateOfBirth;
 
     public Patient() {
 
     }
     
-    public Patient(long id, String firstName, String lastName, String phoneNo, String email, String mailingAddress,
+    public Patient(long id, String firstName, String lastName, String phoneNo, String email, MailingAddress mailingAddress,
             LocalDate dateOfBirth) {
         this.id = id;
         this.firstName = firstName;
@@ -56,13 +56,21 @@ public class Patient {
     }
 
     @JsonProperty("mailingAddress") 
-    public String getMailingAddress() {
+    public MailingAddress getMailingAddress() {
         return mailingAddress;
     }
 
     @JsonProperty("dateOfBirth")
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
+    }
+
+    @JsonProperty("age")
+    public int getAge() {
+        if (dateOfBirth == null) {
+            return 0;
+        }
+        return LocalDate.now().getYear() - dateOfBirth.getYear();
     }
 
     public void setId(long id) {
@@ -85,7 +93,7 @@ public class Patient {
         this.email = email;
     }
 
-    public void setMailingAddress(String mailingAddress) {
+    public void setMailingAddress(MailingAddress mailingAddress) {
         this.mailingAddress = mailingAddress;
     }
 

@@ -1,5 +1,7 @@
 package apsd.lab2b.strategy;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,6 +25,16 @@ public class JsonExport implements IReportStrategy {
             return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(patients);
         } catch (Exception e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public void writeToFile(List<Patient> patients, String fileName) {
+        try {
+            File file = new File(fileName);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(file, patients);
+            System.out.println("Patient data written to file: " + file.getAbsolutePath());
+        } catch (IOException e) {
+            throw new RuntimeException("Error writing to file: " + fileName, e);
         }
     }
 }

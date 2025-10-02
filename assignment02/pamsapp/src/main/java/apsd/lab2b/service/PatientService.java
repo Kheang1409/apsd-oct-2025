@@ -29,7 +29,7 @@ public class PatientService implements IPatientService{
     @Override
     public List<Patient> getPatients() {
         return employeeDAO.getAllPatients().stream()
-            .sorted(Comparator.comparing(Patient::getDateOfBirth))
+            .sorted(Comparator.comparing(Patient::getAge).reversed())
             .collect(Collectors.toList());
     }
 
