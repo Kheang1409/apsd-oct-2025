@@ -33,14 +33,12 @@ public class Main {
         pensionPlanService.saveEmployee(e6);
 
         // Creating Pension Plan objects with dummy data
-        PensionPlan plan1 = new PensionPlan("EX1089", null, 100.00, e1);
-        PensionPlan plan2 = new PensionPlan("", LocalDate.of(2025, 9, 3), 0, e2);
-        PensionPlan plan3 = new PensionPlan("SM2307", LocalDate.of(2017, 5, 17), 1555.50, e3);
+        PensionPlan plan1 = new PensionPlan("EX1089", LocalDate.of(2025, 9, 3), 100.00, e2);
+        PensionPlan plan2 = new PensionPlan("SM2307", LocalDate.of(2017, 5, 17), 1555.50, e3);
 
         // Enrolling Employees to their respective Pension Plans
-        pensionPlanService.enrollEmployeeToPensionPlan(e1, plan1); 
-        pensionPlanService.enrollEmployeeToPensionPlan(e2, plan2);
-        pensionPlanService.enrollEmployeeToPensionPlan(e3, plan3);
+        pensionPlanService.enrollEmployeeToPensionPlan(e2, plan1); 
+        pensionPlanService.enrollEmployeeToPensionPlan(e3, plan2);
 
         LocalDate today = LocalDate.of(2026, 6, 1);
         // LocalDate today = LocalDate.now();
