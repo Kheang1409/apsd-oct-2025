@@ -1,12 +1,13 @@
 package apsd.lab2b.service;
 
-import java.time.LocalDate;
+import java.lang.reflect.Proxy;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import apsd.lab2b.dao.PatientDAO;
 import apsd.lab2b.domain.Patient;
+import apsd.lab2b.proxy.Logging;
 import apsd.lab2b.strategy.IReportStrategy;
 
 public class PatientService implements IPatientService{
@@ -14,7 +15,14 @@ public class PatientService implements IPatientService{
     private IReportStrategy exportStrategy ;
 
     public PatientService(PatientDAO employeeDAO) {
-        this.employeeDAO = employeeDAO;
+
+        var classLoader = employeeDAO.getClass().getClassLoader();
+        this.employeeDAO = (PatientDAO) Proxy.newProxyInstance(
+            classLoader,
+            new Class[] { PatientDAO.class },
+            new Logging(employeeDAO)
+        );
+
     }
 
     @Override
