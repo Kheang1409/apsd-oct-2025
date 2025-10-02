@@ -81,13 +81,15 @@ public class Employee {
 
     @JsonIgnore
     public boolean isEligibleForPension(LocalDate nextQuarterStart, LocalDate nextQuarterEnd) {
-        long yearsOfEmploymentAtStartOfNextQuarter =
-            ChronoUnit.YEARS.between(employmentDate, nextQuarterStart);
-        return yearsOfEmploymentAtStartOfNextQuarter >= 3;
+        // Check if employee will have at least 3 years of employment 
+        // at any point during the next quarter (between start and end dates)
+        long yearsOfEmploymentAtEndOfNextQuarter =
+            ChronoUnit.YEARS.between(employmentDate, nextQuarterEnd);
+        return yearsOfEmploymentAtEndOfNextQuarter >= 3;
     }
 
     @JsonIgnore
     public boolean isEnrolled() {
-        return pensionPlan != null && pensionPlan.getEnrollmentDate() != null;
+        return pensionPlan != null;
     }
 }

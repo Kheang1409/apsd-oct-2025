@@ -40,18 +40,20 @@ public class Main {
         pensionPlanService.enrollEmployeeToPensionPlan(e2, plan1); 
         pensionPlanService.enrollEmployeeToPensionPlan(e3, plan2);
 
-        LocalDate today = LocalDate.of(2026, 6, 1);
-        // LocalDate today = LocalDate.now();
+        LocalDate today = LocalDate.now();
         LocalDate nextQuarterStart = getNextQuarterStart(today);
         LocalDate nextQuarterEnd = nextQuarterStart.plusMonths(3).minusDays(1);
 
         // Generate and print the Quarterly Upcoming Enrollees report using JSON format
         pensionPlanService.setReportStrategy(new JsonExport());
+        
         System.out.println("All Employees Report:");
         System.out.println("--------------------------------------------------");
         var employees = pensionPlanService.getEmployees();
         System.out.println(pensionPlanService.generateReport(employees));
-        System.out.println("Quarterly Upcoming Enrollees Report:");
+        
+        System.out.println();
+        System.out.println("Quarterly Upcoming Enrollees Report (" + nextQuarterStart + " to " + nextQuarterEnd + "):");
         System.out.println("--------------------------------------------------");
         var employeesEligibleForPension = pensionPlanService.getQuarterlyUpcomingEnrollees(nextQuarterStart, nextQuarterEnd);
         System.out.println(pensionPlanService.generateReport(employeesEligibleForPension));
@@ -60,6 +62,8 @@ public class Main {
     private static LocalDate getNextQuarterStart(LocalDate currentDate) {
         Month currentMonth = currentDate.getMonth();
         Month nextQuarterStartMonth;
+        int year = currentDate.getYear();
+        
         if (currentMonth == Month.JANUARY || currentMonth == Month.FEBRUARY || currentMonth == Month.MARCH) {
             nextQuarterStartMonth = Month.APRIL;
         } else if (currentMonth == Month.APRIL || currentMonth == Month.MAY || currentMonth == Month.JUNE) {
@@ -68,7 +72,8 @@ public class Main {
             nextQuarterStartMonth = Month.OCTOBER;
         } else {
             nextQuarterStartMonth = Month.JANUARY;
+            year++;
         }
-        return LocalDate.of(currentDate.getYear(), nextQuarterStartMonth, 1);
+        return LocalDate.of(year, nextQuarterStartMonth, 1);
     }
 }
