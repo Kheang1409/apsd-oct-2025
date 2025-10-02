@@ -1,0 +1,29 @@
+1. What is Spring?
+Spring is a Java framework that helps you build apps faster by handling common tasks like object creation and configuration.
+Example: Using Spring, you don’t have to manually create a UserService object; Spring can do it for you.
+
+2. What is Spring Boot?
+Spring Boot is built on Spring and makes it easy to run apps without lots of setup.
+Example: You can create a full web app with just one main class and @SpringBootApplication.
+
+3. What is the relation between Spring platform and Spring Boot?
+Spring is the full platform with many tools. Spring Boot is part of it that simplifies creating apps.
+Example: Spring Boot uses Spring’s features like IoC and dependency injection automatically.
+
+4. What is the relation between Spring platform and Spring framework?
+The Spring framework is the core part of the Spring platform. The platform also includes tools like Spring Boot and Spring Security.
+Example: Spring framework provides @Component and @Service annotations, which Spring Boot uses.
+
+5. What is Dependency Injection (DI) and how is it done in Spring?
+DI is when Spring gives an object the things it needs instead of the object creating them.
+Example:
+
+@Autowired
+private UserService userService;
+
+
+Here, Spring injects UserService automatically.
+
+6. What is Inversion of Control (IoC) and how is it related to Spring?
+IoC means letting Spring manage object creation and dependencies instead of doing it yourself.
+Example: When you mark a class with @Component, Spring controls when and how it is created.
