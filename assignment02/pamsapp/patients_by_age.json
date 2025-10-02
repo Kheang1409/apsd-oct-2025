@@ -1,0 +1,59 @@
+[ {
+  "id" : 5,
+  "firstName" : "Mary",
+  "lastName" : "Washington",
+  "phoneNo" : "",
+  "email" : "",
+  "mailingAddress" : {
+    "street" : "30 W",
+    "city" : "Burlington",
+    "state" : "",
+    "zipCode" : ""
+  },
+  "dateOfBirth" : "1932-05-31",
+  "age" : 93
+}, {
+  "id" : 2,
+  "firstName" : "Ana",
+  "lastName" : "Smith",
+  "phoneNo" : "",
+  "email" : "amsith@te.edu",
+  "dateOfBirth" : "1948-12-05",
+  "age" : 77
+}, {
+  "id" : 1,
+  "firstName" : "Daniel",
+  "lastName" : "Agar",
+  "phoneNo" : "(641) 123-0009",
+  "email" : "dagar@m.as",
+  "mailingAddress" : {
+    "street" : "1 N Street",
+    "city" : "",
+    "state" : "",
+    "zipCode" : ""
+  },
+  "dateOfBirth" : "1987-01-19",
+  "age" : 38
+}, {
+  "id" : 4,
+  "firstName" : "Jeff",
+  "lastName" : "Goldbloom",
+  "phoneNo" : "(999) 165-1192",
+  "email" : "jgold@es.co.za",
+  "dateOfBirth" : "1995-02-28",
+  "age" : 30
+}, {
+  "id" : 3,
+  "firstName" : "Marcus",
+  "lastName" : "Garvey",
+  "phoneNo" : "(123) 292-0018",
+  "email" : "",
+  "mailingAddress" : {
+    "street" : "4",
+    "city" : "East Ave",
+    "state" : "",
+    "zipCode" : ""
+  },
+  "dateOfBirth" : "2001-09-18",
+  "age" : 24
+} ]
