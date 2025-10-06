@@ -44,6 +44,9 @@ public class Department {
         this.headOfEmployee = headOfEmployee;
     }
     public double getTotalSalary(){
-        return employees.stream().mapToDouble(Employee::getBiweeklySalary).sum();
+         // Calculates the total annual salary for all employees in the department
+         // Assumes getBiweeklySalary() returns the biweekly salary
+         // There are 26 biweekly periods in a year
+         return employees.stream().mapToDouble(e -> e.getBiweeklySalary() * 26).sum();
     }
 }
