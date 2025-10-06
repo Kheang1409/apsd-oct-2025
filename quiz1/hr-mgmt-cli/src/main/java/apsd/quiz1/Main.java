@@ -6,6 +6,7 @@ import apsd.quiz1.Service.IDepartmentService;
 import apsd.quiz1.Service.IEmployeeService;
 import apsd.quiz1.Utility.Export;
 import apsd.quiz1.Domain.Department;
+import apsd.quiz1.DTOs.DepartmentDto;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -47,6 +48,11 @@ public class Main {
 
         List<Department> depts = deptService.getAllDepartments();
 
-        System.out.println(Export.exportDataAsJSON(depts));
+        // convert to DTOs before exporting
+        List<DepartmentDto> deptDtos = depts == null ? List.of() : depts.stream()
+                .map(DepartmentDto::new)
+                .toList();
+
+        System.out.println(Export.exportDataAsJSON(deptDtos));
 }
 }

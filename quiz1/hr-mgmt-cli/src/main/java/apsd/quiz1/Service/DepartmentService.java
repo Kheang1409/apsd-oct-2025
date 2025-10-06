@@ -2,11 +2,8 @@ package apsd.quiz1.Service;
 
 import java.math.BigInteger;
 import java.util.List;
-
 import apsd.quiz1.DAO.DepartmentDAO;
-import apsd.quiz1.DAO.EmployeeDAO;
 import apsd.quiz1.DAO.IDepartmentDAO;
-import apsd.quiz1.DAO.IEmployeeDAO;
 import apsd.quiz1.Domain.Department;
 import apsd.quiz1.Domain.Employee;
 
