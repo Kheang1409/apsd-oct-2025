@@ -25,7 +25,7 @@ public class Export {
             Map<String, Object> deptMap = new LinkedHashMap<>();
             deptMap.put("departmentNo", d.getDepartmentNo());
             deptMap.put("name", d.getName());
-
+            deptMap.put("totalSalary", d.getTotalSalary());
             Employee head = d.getHeadOfEmployee();
             if (head != null) {
                 Map<String, Object> headMap = new LinkedHashMap<>();
