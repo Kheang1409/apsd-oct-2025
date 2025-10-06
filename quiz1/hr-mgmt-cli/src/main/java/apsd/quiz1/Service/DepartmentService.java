@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.util.List;
 import apsd.quiz1.DAO.DepartmentDAO;
 import apsd.quiz1.DAO.IDepartmentDAO;
+import apsd.quiz1.DTOs.DepartmentDto;
 import apsd.quiz1.Domain.Department;
 import apsd.quiz1.Domain.Employee;
 
@@ -46,7 +47,10 @@ public class DepartmentService implements IDepartmentService{
 	}
 
 	@Override
-	public List<Department> getAllDepartments() {
-		return departmentDAO.getDepartments();
+	public List<DepartmentDto> getAllDepartments() {
+		
+        return departmentDAO.getDepartments().stream()
+                .map(DepartmentDto::new)
+                .toList();
 	}
 }

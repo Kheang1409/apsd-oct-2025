@@ -46,13 +46,7 @@ public class Main {
         deptService.setHeadOfDepartment("29274582650152771644", "000-61-0987");
         deptService.setHeadOfDepartment("29274599650152771609", "000-11-1234");
 
-        List<Department> depts = deptService.getAllDepartments();
-
-        // convert to DTOs before exporting
-        List<DepartmentDto> deptDtos = depts == null ? List.of() : depts.stream()
-                .map(DepartmentDto::new)
-                .toList();
-
-        System.out.println(Export.exportDataAsJSON(deptDtos));
+        List<DepartmentDto> depts = deptService.getAllDepartments();
+        System.out.println(Export.exportDataAsJSON(depts));
 }
 }
