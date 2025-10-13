@@ -1,0 +1,89 @@
+### ADS Dental Surgeries Appointments - REST API requests
+# Use with VS Code REST Client extension or import into Postman.
+# Base URL used: http://localhost:8080/adsweb/api/v1
+
+# 1) GET all patients (sorted by lastName asc) - returns patients with primaryAddress
+GET http://localhost:8080/adsweb/api/v1/patients
+Accept: application/json
+###
+
+
+# 2) GET a patient by id (example id=1) - includes primaryAddress
+GET http://localhost:8080/adsweb/api/v1/patients/1
+Accept: application/json
+###
+
+
+# 3) POST - create/register a new patient
+# Provide a JSON body. Adjust fields to match your Patient DTO/model.
+POST http://localhost:8080/adsweb/api/v1/patients
+Content-Type: application/json
+
+{
+  "firstName": "Alice",
+  "lastName": "Smith",
+  "email": "alice.smith@example.com",
+  "phone": "555-0101",
+  "dateOfBirth": "1990-05-15",
+  "primaryAddress": {
+    "street": "123 Main St",
+    "city": "Springfield",
+    "state": "IL",
+    "postalCode": "62704",
+    "country": "USA"
+  }
+}
+###
+
+
+# 4) PUT - update an existing patient (example id=1)
+# This replaces/upserts fields for patient with id 1. Adjust to your DTO semantics.
+PUT http://localhost:8080/adsweb/api/v1/patient/1
+Content-Type: application/json
+
+{
+  "firstName": "Alice",
+  "lastName": "Johnson",
+  "email": "alice.johnson@example.com",
+  "phone": "555-0102",
+  "dateOfBirth": "1990-05-15",
+  "primaryAddress": {
+    "street": "456 Oak Ave",
+    "city": "Springfield",
+    "state": "IL",
+    "postalCode": "62705",
+    "country": "USA"
+  }
+}
+###
+
+
+# 5) DELETE - delete a patient by id (example id=1)
+DELETE http://localhost:8080/adsweb/api/v1/patient/1
+Accept: application/json
+###
+
+
+# 6) SEARCH - search patients by a search string
+# Example: search for 'Alice' or 'Smith' - the API maps to search path variable
+GET http://localhost:8080/adsweb/api/v1/patient/search/Alice
+Accept: application/json
+###
+
+
+# 7) GET all addresses (sorted by city asc) - includes patient data
+GET http://localhost:8080/adsweb/api/v1/addresses
+Accept: application/json
+###
+
+
+# Additional: example error-case GET patient not found (id=9999)
+GET http://localhost:8080/adsweb/api/v1/patients/9999
+Accept: application/json
+
+
+# Notes:
+# - If your controllers use a different base path or resource names, adjust the URLs accordingly.
+# - For POST/PUT ensure the JSON property names match your DTOs (e.g., primaryAddress vs address).
+# - To use with VS Code REST Client, open this file and click "Send Request" above each request.
+# - To import to Postman: save individual requests or convert the file to Postman collection using an external tool.
