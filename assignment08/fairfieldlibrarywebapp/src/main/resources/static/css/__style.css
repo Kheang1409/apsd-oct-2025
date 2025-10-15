@@ -1,0 +1,57 @@
+/* __style.css */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+* {
+    margin: 0;
+    padding: 0;
+    /* font: inherit; */
+}
+html {
+    color-scheme: dark light;
+}
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    font-family: 'Poppins', sans-serif;
+}
+img, picture, svg, video {
+    display: block;
+    max-width: 100%;
+}
+input, textarea, button, select {
+    font: inherit;
+}
+div#page-content {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}
+div#page-content header {
+    margin: 1em 1em 0 1em;
+    min-height: 10vh;
+}
+section.hero-board {
+    width: 100%;
+    min-height: 40vh;
+    border: 2px solid #ababab;
+    padding: 1em;
+    background-image: linear-gradient(
+            180deg, blue, skyblue
+    );
+    color: cornsilk;
+}
+section.hero-board > div {
+    margin-top: 2em;
+}
+section.text-content {
+    padding: 1em;
+}
+button.std-btn {
+    padding: 0.5em 0.75em;
+}
+div#page-content footer {
+    padding: 1em;
+    min-height: 8vh;
+    border-top: 1px solid #ababab;
+}

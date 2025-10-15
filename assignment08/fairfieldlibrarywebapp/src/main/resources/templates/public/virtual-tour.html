@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head th:replace="~{fragments/head-elements :: headElements}"></head>
+    <title>City Library - Virtual Tour</title>
+</head>
+<body>
+    <div id="page-content">
+        <header th:replace="~{fragments/header :: header}"></header>
+        <main class="container mt-4">
+            <h2>Virtual Tour</h2>
+            <hr>
+            <p>Welcome to the City Library virtual tour. Explore our facilities, reading rooms, special collections, and more.</p>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Main Reading Room</h4>
+                    <img th:src="@{/images/reading-room.jpg}" alt="Reading Room" class="img-fluid" onerror="this.style.display='none'">
+                    <p class="mt-2">Our spacious main reading room offers comfortable seating, natural light, and access to our print collections.</p>
+                </div>
+                <div class="col-md-6">
+                    <h4>Children's Section</h4>
+                    <img th:src="@{/images/childrens-section.jpg}" alt="Children's Section" class="img-fluid" onerror="this.style.display='none'">
+                    <p class="mt-2">A colorful space for young readers, story times, and family-friendly programs.</p>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <h4>Special Collections</h4>
+                <p>We house historical archives and community collections. Appointments are recommended for viewing rare materials.</p>
+            </div>
+        </main>
+        <footer th:replace="~{fragments/footer :: footer}"></footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head th:replace="~{fragments/head-elements :: headElements}"></head>
+    <title>City Library - System Administration - Manage Publishers</title>
+</head>
+<body>
+  <div id="page-content">
+    <header th:replace="~{fragments/header :: header}"></header>
+    <main>
+        <h2>
+            <a class="std-link" href="/secured/sysadmin/index">System Administration</a>:
+            <a class="std-link" href="/secured/sysadmin/publisher/list">Manage Publishers</a>
+        </h2>
+      <hr>
+      <div id="mainContainer" class="container">
+        <div style="width: 100%;">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 style="display: inline;">List of all Publishers</h3>
+                </div>
+                <div class="col-md-6" style="display:flex; justify-content: end;">
+                    <span>
+                        <a class="btn btn-outline-primary btn-lg" href="/secured/sysadmin/publisher/new">
+                            <i class="fa-brands fa-product-hunt"></i> Add a New Publisher
+                        </a>
+                    </span>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 1em;">
+                <!-- Search panel -->
+                <div class="col-md-12">
+                    <form id="searchPublisherForm" action="/secured/sysadmin/publisher/search" method="get">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="input-group">
+                                    <input type="text" name="searchString" id="searchString" class="form-control" placeholder="Enter text to search for Publishers" th:value="${searchString}" autofocus>
+                                    <button id="btnSubmit" class="btn btn-outline-primary" type="submit">Quick Search</button>
+                                </div>                
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 0.5em;">
+                            <div class="col-md-12" style="display: flex; justify-content: flex-end;">
+                                <a href="#">
+                                    <i class="fa-regular fa-pen-to-square"></i> Advanced Search
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <div style="font-size: 1em">
+            <!-- Dialog -->
+<!--            <dialog id="deletePublisherDialog">-->
+<!--                <form>-->
+<!--                    <div>-->
+<!--                        <p>Delete the Publisher?</p>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <button value="no" formmethod="dialog">No</button>-->
+<!--                        <button id="btnDeletePublisherYes" value="yes">Yes</button>-->
+<!--                    </div>-->
+<!--                </form>-->
+<!--            </dialog>-->
+            <!-- Bootstrap Modal dialog -->
+            <div class="modal fade" id="deleteOperationModalDialog" tabindex="-1" aria-labelledby="deleteOperationModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="deleteOperationModalLabel">Confirm Delete</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Do you really wish to delete this item?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                            <button id="modalBtnYes" type="button" class="btn btn-primary">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- table with publishers-->
+            <table id="tblPublishers" class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Publisher Name</th>
+                    <th scope="col">Primary Address</th>
+                    <th scope="col">&nbsp;</th>
+                    <th scope="col">&nbsp;</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="publisher,iterStat : ${publishers}">
+                    <!--th:onclick="@{document.location='/elibrary/book/edit/{bookId}'(bookId=${book.bookId})}" -->
+                    <th scope="row" th:text="${iterStat.count}+${'.'}"></th>
+                    <td th:text="${publisher.name}"></td>
+                    <td th:if="${publisher.primaryAddress != null}">
+                        <p>
+                            <span th:text="${publisher.primaryAddress.street}"></span><br>
+                            <span th:text="${publisher.primaryAddress.city}+${', '}+${publisher.primaryAddress.state}+${' '}+${publisher.primaryAddress.zipCode}"></span>
+                        </p>
+<!--                        <a th:href="@{'/secured/sysadmin/publisher/primaryAddress/delete/{publisherId}'(publisherId=${publisher.publisherId})}">-->
+<!--                            <i class="fa-solid fa-delete-left"></i> Delete Address-->
+<!--                        </a>-->
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#deleteOperationModalDialog" data-bs-whattodelete="primaryaddress" th:data-bs-publisherid="${publisher.publisherId}" th:data-bs-addrstreet="${publisher.primaryAddress.street}" th:data-bs-addrcity="${publisher.primaryAddress.city}" th:data-bs-addrstate="${publisher.primaryAddress.state}" th:data-bs-addrzipcode="${publisher.primaryAddress.zipCode}">
+                            <i class="fa-solid fa-delete-left"></i> Delete Address
+                        </a>
+                    </td>
+                    <td th:if="${publisher.primaryAddress == null}" th:text="${''}"></td>
+                    <td>
+                        <a th:href="@{'/secured/sysadmin/publisher/edit/{publisherId}'(publisherId=${publisher.publisherId})}">
+                            <i class="fa-regular fa-pen-to-square"></i> Edit Publisher
+                        </a>
+                    </td>
+                    <td>
+<!--                        <a th:href="@{'/secured/sysadmin/publisher/delete/{publisherId}'(publisherId=${publisher.publisherId})}">-->
+<!--                        <a href="#">-->
+<!--                            <i class="fa-solid fa-delete-left"></i> Delete Publisher-->
+<!--                        </a>-->
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#deleteOperationModalDialog" data-bs-whattodelete="publisher" th:data-bs-publisherid="${publisher.publisherId}" th:data-bs-publishername="${publisher.name}">
+                            <i class="fa-solid fa-delete-left"></i> Delete Publisher
+                        </a>
+                    </td>
+                </tr>
+                <tr th:if="${publishers.isEmpty()}">
+                    <td colspan="8" th:align="center">No publishers found</td>
+                </tr>
+                </tbody>
+            </table>
+            <!--Pagination-->
+            <div>
+                <ul th:if="${!publishers.isEmpty()}" class="pagination">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">Pages: </a>
+                    </li>
+                    <li th:each="i : ${#numbers.sequence(1, publishers.totalPages)}"
+                        th:class="${currentPageNo}==${i-1}?'page-item active':'page-item'">
+                        <a th:href="@{/secured/sysadmin/publisher/list(pageNo=${i})}"
+                           th:text="${i}" class = "page-link"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+     </div>
+    </main>
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+  </div>
+  <script>
+      (() => {
+          const deleteOperationModalDialog = document.querySelector("#deleteOperationModalDialog");
+          const modalBtnYes = document.querySelector("#modalBtnYes");
+          const modalTitle = document.querySelector(".modal-title");
+          const modalContent = document.querySelector(".modal-body");
+          if(deleteOperationModalDialog) {
+              deleteOperationModalDialog.addEventListener("show.bs.modal", event => {
+                  // Get the link/button/element which triggered/opened the modal dialog
+                  const eventRelatedTarget = event.relatedTarget;
+                  // Get which data-type needs the operation to be performed for
+                  const targetDataType = eventRelatedTarget.getAttribute("data-bs-whattodelete");
+                  if(targetDataType === "publisher") {
+                      // Get/show the target data
+                      const publisherId = eventRelatedTarget.getAttribute("data-bs-publisherid");
+                      const publisherName = eventRelatedTarget.getAttribute("data-bs-publishername");
+                      modalTitle.textContent = `Confirm Delete of Publisher`;
+                      modalContent.innerHTML = `<p>Do you really wish to delete this Publisher?</p><p><b>Publisher ID:</b> ${publisherId}<br><b>Publisher Name:</b> ${publisherName}</p>`;
+                      // Handle BtnYes click event
+                      modalBtnYes.onclick = event => {
+                          deleteOperationModalDialog.hidden = true;
+                          document.location=`/secured/sysadmin/publisher/delete/${publisherId}`;
+                      };
+                  } else if(targetDataType === "primaryaddress") {
+                      const publisherId = eventRelatedTarget.getAttribute("data-bs-publisherid");
+                      const street = eventRelatedTarget.getAttribute("data-bs-addrstreet");
+                      const city = eventRelatedTarget.getAttribute("data-bs-addrcity");
+                      const state = eventRelatedTarget.getAttribute("data-bs-addrstate");
+                      const zipCode = eventRelatedTarget.getAttribute("data-bs-addrzipcode");
+                      modalTitle.textContent = `Confirm Delete of Primary Address`;
+                      modalContent.innerHTML = `<p>Do you really wish to delete the Primary Address of this Publisher?</p><p><b>Publisher ID:</b> ${publisherId}<br><b>Address:</b><br><b>Street:</b> ${street}<br><b>City:</b> ${city}<br><b>State:</b> ${state}<br><b>Zip Code:</b> ${zipCode}</p>`;
+                      // Handle BtnYes click event
+                      modalBtnYes.onclick = event => {
+                          deleteOperationModalDialog.hidden = true;
+                          document.location=`/secured/sysadmin/publisher/primaryAddress/delete/${publisherId}`;
+                      };
+                  }
+              });
+          }
+      })();
+  </script>
+</body>
+</html>

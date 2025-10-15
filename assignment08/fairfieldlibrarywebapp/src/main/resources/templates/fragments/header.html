@@ -1,0 +1,180 @@
+<header th:fragment="header" xmlns:th="http://www.thymeleaf.org">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <h2>City Library</h2>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarColor01"
+        aria-controls="navbarColor01"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="/"
+              >Home
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/virtual-tour">Virtual Tour</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/services">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/secured/sysadmin/index"
+              >System Administration</a
+            >
+          </li>
+        </ul>
+        <div id="header-auth">
+          <span
+            id="welcome-text"
+            style="color: aliceblue; padding-left: 1em; padding-right: 1em"
+            >Welcome, Guest</span
+          >
+          <a href="/signin" id="signin-btn" class="btn btn-secondary"
+            >Sign In</a
+          >
+          <a
+            href="/secured/sysadmin/index"
+            id="myaccount-link"
+            class="btn btn-outline-light ms-2 d-none"
+            >My Account</a
+          >
+          <a href="#" id="signout-btn" class="btn btn-danger ms-2 d-none"
+            >Sign Out</a
+          >
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Sign In Modal -->
+<div
+  class="modal fade"
+  id="signinModal"
+  tabindex="-1"
+  aria-labelledby="signinModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="signinModalLabel">Sign In</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form id="signin-form">
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              placeholder="Enter username"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="Enter password"
+              required
+            />
+          </div>
+          <div class="form-text">
+            This demo stores the username locally (no backend). Use any values
+            to simulate sign-in.
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancel
+        </button>
+        <button type="button" id="signin-submit" class="btn btn-primary">
+          Sign In
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Simple front-end sign-in simulation using sessionStorage.
+  (function () {
+    const welcomeText = document.getElementById("welcome-text");
+    const signinBtn = document.getElementById("signin-btn");
+    const signoutBtn = document.getElementById("signout-btn");
+    const myAccountLink = document.getElementById("myaccount-link");
+
+    function updateHeader() {
+      const user = sessionStorage.getItem("fl_user");
+      if (user) {
+        welcomeText.textContent = `Welcome, ${user}`;
+        signinBtn.classList.add("d-none");
+        myAccountLink.classList.remove("d-none");
+        signoutBtn.classList.remove("d-none");
+      } else {
+        welcomeText.textContent = "Welcome, Guest";
+        signinBtn.classList.remove("d-none");
+        myAccountLink.classList.add("d-none");
+        signoutBtn.classList.add("d-none");
+      }
+    }
+
+    // On modal sign-in submit, store username and update header
+    document
+      .getElementById("signin-submit")
+      .addEventListener("click", function () {
+        const username = document.getElementById("username").value.trim();
+        // Simple client-side validation
+        if (!username) {
+          alert("Please enter a username.");
+          return;
+        }
+        // Save to sessionStorage to simulate an authenticated session
+        sessionStorage.setItem("fl_user", username);
+        // Close modal (Bootstrap 5)
+        const modalEl = document.getElementById("signinModal");
+        const modal =
+          bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
+        modal.hide();
+        // Reset form
+        document.getElementById("signin-form").reset();
+        updateHeader();
+      });
+
+    // Sign out clears the sessionStorage and updates header
+    signoutBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      sessionStorage.removeItem("fl_user");
+      updateHeader();
+    });
+
+    // Initialize header on page load
+    document.addEventListener("DOMContentLoaded", updateHeader);
+    // Also call immediately in case this fragment is loaded dynamically
+  })();
+</script>

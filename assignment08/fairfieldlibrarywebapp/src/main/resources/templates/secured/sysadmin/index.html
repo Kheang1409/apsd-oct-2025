@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head th:replace="~{fragments/head-elements :: headElements}"></head>
+  <title>City Library - System Administration</title>
+  <style>
+    a.sysadmin-card-link {
+      text-decoration: inherit;
+    }
+  </style>
+</head>
+<body>
+  <div id="page-content">
+    <header th:replace="~{fragments/header :: header}"></header>
+    <main>
+      <div class="container">
+      <h2>System Administration</h2>
+      <hr>
+      <div class="row">
+        <h3>Manage the eCatalog</h3>
+        <div class="col-md-3">
+          <div class="card border-primary mb-3" style="max-width: 20rem;">
+            <a class="sysadmin-card-link" href="/secured/sysadmin/publisher/list">
+              <div class="card-header">Manage Publishers</div>
+              <div class="card-body">
+                <h4 class="card-title">Publishers</h4>
+                <p class="card-text">
+                  Register a new Publisher and their Primary Address.
+                  Also, update or delete an existing Publisher.
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card border-primary mb-3" style="max-width: 20rem;">
+            <a class="sysadmin-card-link" href="#">
+              <div class="card-header">Manage Books</div>
+              <div class="card-body">
+                <h4 class="card-title">Books</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card border-primary mb-3" style="max-width: 20rem;">
+            <a class="sysadmin-card-link" href="#">
+              <div class="card-header">Manage Authors</div>
+              <div class="card-body">
+                <h4 class="card-title">Authors</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card border-primary mb-3" style="max-width: 20rem;">
+            <a class="sysadmin-card-link" href="#">
+              <div class="card-header">Manage Subjects and Categories</div>
+              <div class="card-body">
+                <h4 class="card-title">Subjects and Categories</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 1em;">
+        <h3>Manage Membership and User Accounts</h3>
+        <div class="col-md-3">
+          <div class="card border-primary mb-3" style="max-width: 20rem;">
+            <a class="sysadmin-card-link" href="#">
+              <div class="card-header">Manage LibraryMembers</div>
+              <div class="card-body">
+                <h4 class="card-title">Members</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card border-primary mb-3" style="max-width: 20rem;">
+            <a class="sysadmin-card-link" href="#">
+              <div class="card-header">Manage Membership Types</div>
+              <div class="card-body">
+                <h4 class="card-title">Membership Types</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card border-primary mb-3" style="max-width: 20rem;">
+            <a class="sysadmin-card-link" href="#">
+              <div class="card-header">Manage User Accounts</div>
+              <div class="card-body">
+                <h4 class="card-title">Users</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card border-primary mb-3" style="max-width: 20rem;">
+            <a class="sysadmin-card-link" href="#">
+              <div class="card-header">Manage User-Roles</div>
+              <div class="card-body">
+                <h4 class="card-title">Roles</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      </div>
+    </main>
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+  </div>
+</body>
+</html>

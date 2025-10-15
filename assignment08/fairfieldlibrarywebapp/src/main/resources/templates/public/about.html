@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head th:replace="~{fragments/head-elements :: headElements}"></head>
+  <title>Fairfield Library - About</title>
+
+  <style>
+    div#home-text-sections {
+      display: flex;
+      gap: 1em;
+      margin: 1em 0 1em 0;
+    }
+    div#home-text-sections section {
+      border: 2px solid #ababab;
+      padding: 0.6em;
+    }
+  </style>
+</head>
+<body>
+  <div id="page-content">
+    <header th:replace="~{fragments/header :: header}"></header>
+    <main>
+      <h2>About the Library</h2>
+      <hr>
+      <div id="home-text-sections">
+        <section>
+          <h3>Article 1</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos expedita esse odio repellendus. Quos reprehenderit velit cum optio ut at odio possimus fuga aliquid libero voluptates, ex assumenda, ipsa sapiente voluptate doloribus esse rem corporis unde nesciunt, vel nemo similique? Corrupti quae neque autem ipsa quibusdam laboriosam repudiandae accusamus!</p>
+        </section>
+        <section>
+          <h3>Article 2</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos expedita esse odio repellendus. Quos reprehenderit velit cum optio ut at odio possimus fuga aliquid libero voluptates, ex assumenda, ipsa sapiente voluptate doloribus esse rem corporis unde nesciunt, vel nemo similique? Corrupti quae neque autem ipsa quibusdam laboriosam repudiandae accusamus!</p>
+        </section>
+        <section>
+          <h3>Article 3</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos expedita esse odio repellendus. Quos reprehenderit velit cum optio ut at odio possimus fuga aliquid libero voluptates, ex assumenda, ipsa sapiente voluptate doloribus esse rem corporis unde nesciunt, vel nemo similique? Corrupti quae neque autem ipsa quibusdam laboriosam repudiandae accusamus!</p>
+        </section>
+      </div>
+    </main>
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+  </div>
+</body>
+</html>
