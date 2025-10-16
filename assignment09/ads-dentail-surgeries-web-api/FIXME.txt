@@ -1,0 +1,1 @@
+If builds complain about 'package main.java.asd...', update package lines to 'package asd.lab9.ads_dentail_surgeries_web_api...'. This file is a reminder and can be deleted.
